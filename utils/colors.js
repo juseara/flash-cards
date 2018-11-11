@@ -1,0 +1,12 @@
+export const primary = '#006CFF'
+export const primaryLight = '#00FFFF'
+export const primaryDark = '#000a12'
+export const primaryText = '#ffffff'
+export const black = '#000000'
+export const white = '#ffffff'
+export const yelowLight = '#F8EE5F'
+
+export const danger = '#f44336'
+export const success = '#4caf50'
+export const grey = '#BDEDCC'
+export const green = '#008B0F'
