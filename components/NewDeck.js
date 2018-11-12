@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, Text, TouchableOpacity, TextInput, KeyboardAvoidingView } from 'react-native'
+import { StyleSheet, View, Text, TouchableOpacity, TextInput, KeyboardAvoidingView, Platform } from 'react-native'
 import { connect } from 'react-redux'
 
 import * as _ from 'lodash'
@@ -54,9 +54,10 @@ class NewDecks extends Component {
                     style={style.input} 
                     value={this.state.deck.name} />
                 </View>
-                <View style={style.viewBtn}>
-                    <TouchableOpacity onPress={this.handleSubmit} style={style.btnSubmit}>
-                        <Text style={{ color: colors.black }}>SUBMIT</Text>
+                <View style={Platform.OS !== 'ios' ? style.viewBtn:style.viewBtnIos}>
+                    <TouchableOpacity onPress={this.handleSubmit} style={Platform.OS !== 'ios' ?
+                    style.btnSubmit : style.iosBtnSubmit}>
+                        <Text style={Platform.OS !== 'ios' ?{ color: colors.black }:{color:colors.white,fontWeight:'bold',fontSize:20}}>SUBMIT</Text>
                     </TouchableOpacity>
                 </View>
             </KeyboardAvoidingView>
@@ -87,12 +88,28 @@ const style = StyleSheet.create({
         justifyContent: 'flex-end',
         width: '100%',
     },
+    viewBtnIos:{
+        flex:1,
+        width:'100%',
+        justifyContent:'center',
+        alignItems:'center'
+    },
     btnSubmit: {
         backgroundColor: colors.yelowLight,
         padding: 10,
         justifyContent: 'center',
         alignItems: 'center',
         height: 50
+    },
+    iosBtnSubmit:{
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderColor:colors.white,
+        borderWidth:1,
+        padding:15,
+        borderRadius:100,
+        width:200,
+        backgroundColor:colors.yelowLight
     }
 })
 
