@@ -7,7 +7,7 @@ Esse projeto é uma aplicativo para `android` e `ios`. onde você pode criar bar
 você deve seguir os passos listado abaixa para instalar todas as dependências e iniciar o projeto.
 
 * install all project dependencies with `npm install`
-* install expo-cli globality `npm install -g expo-cli`
+* install expo-cli globally `npm install -g expo-cli`
 * start app in your device or simulator `expo start` or `yarn start`
 
 ## Funcionalidade da aplicação
