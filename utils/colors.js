@@ -8,7 +8,7 @@ export const yelowLight = '#F8EE5F'
 
 export const danger = '#f44336'
 export const success = '#4caf50'
-export const greenGrey = '#BDEDCC'
+export const blueLight = '#9BEDE6'
 export const green = '#008B0F'
 export const grey = '#999'
 export const orage ='#FF9462'

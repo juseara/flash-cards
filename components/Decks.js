@@ -29,7 +29,7 @@ class Decks extends Component{
         }
 
         return(
-            <View style={{ flex: 1, alignItems: 'stretch', justifyContent: 'center'}}>
+            <View style={{ flex: 1, alignItems: 'stretch', justifyContent: 'center',backgroundColor:colors.white}}>
                 <FlatList 
                     data={decks}
                     keyExtractor={item => item.name}
@@ -60,11 +60,20 @@ const style = StyleSheet.create({
         height:100,
         alignItems:'center',
         justifyContent:'center',
-        backgroundColor:colors.greenGrey,
+        backgroundColor:colors.blueLight,
         margin:5,
+        borderWidth: 1,
+        borderRadius: 2,
+        borderColor: '#ddd',
+        borderBottomWidth: 0,
+        shadowColor: '#000',
+        shadowOffset: { width: 1, height: 2 },
+        shadowOpacity: 0.5,
+        shadowRadius: 2,
+        elevation: 3,
     },
     deck: {
-        fontSize:20
+        fontSize:20,
     },
     card: {
         fontSize:10,

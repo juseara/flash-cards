@@ -98,11 +98,10 @@ export default class App extends React.Component {
     
     let { status } = await Permissions.getAsync(Permissions.NOTIFICATIONS)
     
-    console.log("STATUS",status)
     if(status === 'undetermined')
     {
       status = await askPermissionNotification()
-      if( status !== 'granted')
+      if( status === 'denied')
       {
         alert('You denied receiving notifications for this app.')
       }
