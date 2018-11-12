@@ -96,7 +96,7 @@ const Game = ({ deck, handleShowAnswers, showAnswer, questionIndex = 0, handleSu
                 {!showAnswer && <Text style={{ fontSize: 25,textAlign: 'center' }}>{deck.questions[questionIndex].question}</Text>}
                 {showAnswer && <Text style={{ fontSize: 25,textAlign: 'center' }}>{deck.questions[questionIndex].awers}</Text>}
                 {!showAnswer &&<TouchableOpacity style={style.btnAwers} onPress={handleShowAnswers}>
-                    <Text style={{ color: colors.orage }}>FLIP ANSWERS</Text>
+                    <Text style={{ color: colors.orage }}>ANSWERS</Text>
                 </TouchableOpacity>}
             </View>
             <View style={style.box}>
