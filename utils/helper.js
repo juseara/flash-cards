@@ -7,14 +7,11 @@ import { getStorage, setStorage } from './storage'
 
 export const askPermissionNotification = async () => {
     const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS)
-    debugger
     return status
 }
 
 export const setLocalNotifiation = async () => {
   const status = await askPermissionNotification()
-  debugger
-  console.log("STATUS SET ", status)
   if (status !== "granted") {
     console.warn('No permission to use notifications',status)
     return
@@ -36,6 +33,12 @@ export const fetchDecks = async () => {
   return await getStorage()
 }
 
+export const deleteDeck = async (key) => {
+  const storage  = await getStorage()
+  delete storage[key]
+  await setStorage(storage)
+}
+
 export const saveDeck = async (deck) =>{
     const storage = await getStorage()
     const newState = {
@@ -47,11 +50,11 @@ export const saveDeck = async (deck) =>{
 
 export const startStorage = async () => {
   
-  const decks = defaultDecks()
+  /* const decks = defaultDecks() */
   const INITICAL_STATE = {}
-  decks.map(deck =>{
+  /* decks.map(deck =>{
     INITICAL_STATE[deck.name] = deck
-  })
+  }) */
   await setStorage(INITICAL_STATE)
 }
 

@@ -1,4 +1,4 @@
-import { FETCH_DECKS, SET_DECK } from '../actions/types'
+import { FETCH_DECKS, SET_DECK, DELETE_DECK } from '../actions/types'
 
 function decks(state = {}, action) {
   switch (action.type) {
@@ -9,8 +9,14 @@ function decks(state = {}, action) {
       }
       return newState
     }
+    case DELETE_DECK:{
+      console.log("OLDSTATE",state)
+      const newState = {...state}
+      delete newState[action.payload]
+      console.log("NEW STATE", newState)
+      return newState
+    }
     case FETCH_DECKS: {
-      console.log("REDUCERS")
         return action.payload
       }
     default:

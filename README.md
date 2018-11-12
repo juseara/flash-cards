@@ -23,6 +23,7 @@ Nesta aplicação, temos 5 views que são:
     * exibe o número de cartões em um baralho
     * exibe uma opção para começar um quiz no baralho
     * uma opção de adicionar uma nova pergunta ao baralho
+    * uma opção de deletar o baralho
 
 * View do quiz
     * exibe a pergunta do cartão

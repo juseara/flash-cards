@@ -27,9 +27,17 @@ class Decks extends Component{
               decks.push(this.props.decks[key])
             })
         }
-
+        if(decks.length === 0){
+            return(
+                <View style={{flex:1,justifyContent:'center',alignItems:'center',backgroundColor:colors.white}}>
+                    <View style={style.sumary}>
+                        <Text style={{fontSize:30}}>You don't have a decks</Text>
+                    </View>
+                </View>
+            )
+        }
         return(
-            <View style={{ flex: 1, alignItems: 'stretch', justifyContent: 'center',backgroundColor:colors.white}}>
+            <View style={{flex: 1, alignItems: 'stretch', justifyContent: 'center',backgroundColor:colors.white}}>
                 <FlatList 
                     data={decks}
                     keyExtractor={item => item.name}
@@ -78,7 +86,22 @@ const style = StyleSheet.create({
     card: {
         fontSize:10,
         padding:10
-        
+    },
+    sumary:{
+        height:100,
+        alignItems:'center',
+        justifyContent:'center',
+        margin:5,
+        padding:10,
+        borderWidth: 1,
+        borderRadius: 100,
+        borderColor: '#ddd',
+        borderBottomWidth: 0,
+        shadowColor: '#000',
+        shadowOffset: { width: 1, height: 2 },
+        shadowOpacity: 0.5,
+        shadowRadius: 2,
+        elevation: 3,
     }
 })
 
