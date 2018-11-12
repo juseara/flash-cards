@@ -19,7 +19,7 @@ class Decks extends Component{
     }
 
     render(){
-
+        
         const decks = []
 
         if(this.props.decks && Object.keys(this.props.decks).length > 0){
@@ -60,7 +60,7 @@ const style = StyleSheet.create({
         height:100,
         alignItems:'center',
         justifyContent:'center',
-        backgroundColor:colors.grey,
+        backgroundColor:colors.greenGrey,
         margin:5,
     },
     deck: {

@@ -4,25 +4,51 @@ import { View, Text, StyleSheet,TouchableOpacity } from 'react-native'
 import * as colors from '../utils/colors'
 
 class Deck extends Component {
+    state= {
+        deck:{}
+    }
+   
     static navigationOptions = ({ navigation }) => {
         const { deck } = navigation.state.params
         
         return {
-          title: `${deck.name}`
+          title: `Deck ${deck.name}`
         }
       }
+
+    goToAddCard = () => {
+        const { navigation} = this.props
+        const deck = navigation.state.params.deck
+        navigation.push('NewCard',{ deck })
+    }
+
+    goToQuiz = () => {
+        const { navigation } = this.props
+        const deck =  navigation.state.params.deck
+        navigation.push('Quiz',{ deck })
+    }
+
     render(){
-        const { deck } = this.props
+        
+        const { decks, navigation } = this.props
+
+        const deck = decks[navigation.state.params.deck.name]
+        
         return(
             <View style={style.container}>
                 <Text style={style.deckName}>{deck.name}</Text>
-                <Text style={style.cardCount}>{deck.questions ? deck.questions.length : 0} cards</Text> 
-                <TouchableOpacity style={style.btnAddCard}>
+                <Text style={style.cardCount}>{deck.questions.length} cards</Text> 
+                <TouchableOpacity 
+                    style={style.btnAddCard}
+                    onPress={this.goToAddCard} >
                     <Text style={{color:colors.green}}>ADD CARD</Text>
                 </TouchableOpacity>   
-                <TouchableOpacity style={style.btnQuiz}>
+                {deck.questions.length > 0 &&<TouchableOpacity 
+                style={style.btnQuiz}
+                onPress={this.goToQuiz}
+                >
                     <Text style={{color:colors.white}}>START QUIZ</Text>
-                </TouchableOpacity>   
+                </TouchableOpacity>}
             </View>
         )
     }
@@ -65,9 +91,8 @@ const style = StyleSheet.create({
     }
 })
 
-function mapStateToProps (state,{navigation}) {
-    const { deck } = navigation.state.params
-    return { deck }
+function mapStateToProps (decks) {
+    return { decks }
 }
 
 export default connect(mapStateToProps)(Deck)

@@ -24,7 +24,7 @@ class NewDecks extends Component {
         const  { add, goBack } = this.props
         if(_.isEmpty(this.state.deck.name))
         {
-            alert("O nome é obrigatorio!")
+            alert("Name is requered")
             return
         }
 
@@ -44,13 +44,13 @@ class NewDecks extends Component {
         return (
             <KeyboardAvoidingView behavior='padding' style={style.container}>
                 <View style={style.viewInput}>
-                    <Text style={style.content}>De um nome ao seu novo Deck.</Text>
+                    <Text style={style.content}>Name your new Deck.</Text>
                     <TextInput  onChangeText={(text) => {
                       const { deck } = this.state
                         deck.name = text
                         this.setState({ deck })
                         }} 
-                    placeholder="Digite o nome aqui" 
+                    placeholder="Write name is here" 
                     style={style.input} 
                     value={this.state.deck.name} />
                 </View>

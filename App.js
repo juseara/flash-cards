@@ -1,5 +1,5 @@
 import React from 'react';
-import { Constants } from 'expo'
+import { Constants, Permissions } from 'expo'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import { StyleSheet, StatusBar, View, Platform } from 'react-native';
@@ -9,6 +9,9 @@ import reducer from './reducers'
 import Decks from './components/Decks'
 import NewDeck from './components/NewDeck'
 import Deck from './components/Deck'
+import NewCard from './components/NewCard'
+import Quiz from './components/Quiz'
+import { askPermissionNotification, setLocalNotifiation } from './utils/helper'
 import * as colors from './utils/colors'
 
 function UdaciStatusBar({ backgroundColor, ...props }) {
@@ -69,9 +72,47 @@ const MainNavigation = createStackNavigator({
       },
     }),
   },
+  NewCard:{
+    screen:NewCard,
+    navigationOptions:({navigation})=>({
+      headerTintColor:colors.white,
+      headerStyle:{
+        backgroundColor:colors.green
+      }
+    })
+  },
+  Quiz:{
+    screen:Quiz,
+    navigationOptions:({navigation})=>({
+      headerTintColor:colors.white,
+      headerStyle:{
+        backgroundColor:colors.green,
+      },
+    })
+  }
 });
 
 export default class App extends React.Component {
+
+ async componentDidMount(){
+    
+    let { status } = await Permissions.getAsync(Permissions.NOTIFICATIONS)
+    
+    console.log("STATUS",status)
+    if(status === 'undetermined')
+    {
+      status = await askPermissionNotification()
+      if( status !== 'granted')
+      {
+        alert('You denied receiving notifications for this app.')
+      }
+      else if(status === 'granted'){
+        await setLocalNotifiation()
+      }
+    }
+  }
+
+
   render() {
     return (
         <Provider store={createStore(reducer)}>

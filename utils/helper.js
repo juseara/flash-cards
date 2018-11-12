@@ -7,7 +7,29 @@ import { getStorage, setStorage } from './storage'
 
 export const askPermissionNotification = async () => {
     const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS)
+    debugger
     return status
+}
+
+export const setLocalNotifiation = async () => {
+  const status = await askPermissionNotification()
+  debugger
+  console.log("STATUS SET ", status)
+  if (status !== "granted") {
+    console.warn('No permission to use notifications',status)
+    return
+  }
+
+  await Notifications.cancelAllScheduledNotificationsAsync()
+  const future = (new Date()).getTime() + 24 * 60 * 60 * 1000
+
+  return await Notifications.scheduleLocalNotificationAsync(
+    quizNotification,
+    {
+      time: future,
+      repeat: 'day'
+    }
+  )
 }
 
 export const fetchDecks = async () => {
