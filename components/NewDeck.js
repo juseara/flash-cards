@@ -21,21 +21,22 @@ class NewDecks extends Component {
     }
     
     handleSubmit =()=>{
-        const  { add, goBack } = this.props
-        if(_.isEmpty(this.state.deck.name))
+        const  { add, goDeck } = this.props
+        const deck = this.state.deck
+        if(_.isEmpty(deck.name))
         {
             alert("Name is requered")
             return
         }
 
-        add(this.state.deck)
+        add(deck)
         this.setState({
             deck:{
                 name:'',
                 questions:[]
             }
         })
-        goBack()
+        goDeck(deck)
         console.log("STATE",this.state)
         
     }
@@ -76,7 +77,7 @@ const style = StyleSheet.create({
     input:{
         fontSize: 20,
         marginTop:20,
-       
+        textAlign:'center'
     },
     viewInput: {
         flex: 1,
@@ -119,7 +120,7 @@ function mapDispatchToProps (dispatch, { navigation }) {
           saveDeck(deck)
           dispatch(setDeck(deck))
       },
-      goBack: () => navigation.goBack()
+      goDeck: (deck) => navigation.navigate('Deck',{deck})
     }
 }
 

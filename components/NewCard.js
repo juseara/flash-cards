@@ -101,6 +101,7 @@ const style = StyleSheet.create({
         borderColor: colors.black,
         borderWidth: 1,
         padding: 5,
+        paddingLeft:10,
         borderRadius: 4,
         margin: 15
     }

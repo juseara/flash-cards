@@ -10,10 +10,10 @@ function decks(state = {}, action) {
       return newState
     }
     case DELETE_DECK:{
-      console.log("OLDSTATE",state)
+      
       const newState = {...state}
       delete newState[action.payload]
-      console.log("NEW STATE", newState)
+      
       return newState
     }
     case FETCH_DECKS: {

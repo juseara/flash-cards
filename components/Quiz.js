@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import * as colors from '../utils/colors'
 import { setLocalNotifiation } from '../utils/helper'
-class Quiz extends Component {
+class Quiz extends PureComponent {
 
     state = {
         questionIndex: 0,
@@ -90,11 +90,11 @@ const Game = ({ deck, handleShowAnswers, showAnswer, questionIndex = 0, handleSu
     return (
         <View style={style.container}>
             <View style={style.stage}>
-                <Text style={{ fontSize: 20, padding: 10, fontWeight: "bold" }}>{questionIndex+1}/{deck.questions.length}</Text>
+                <Text style={style.score}>{questionIndex+1}/{deck.questions.length}</Text>
             </View>
             <View style={[style.box, style.questions, style.card]}>
-                {!showAnswer && <Text style={{ fontSize: 25,textAlign: 'center' }}>{deck.questions[questionIndex].question}</Text>}
-                {showAnswer && <Text style={{ fontSize: 25,textAlign: 'center' }}>{deck.questions[questionIndex].awers}</Text>}
+                {!showAnswer && <Text style={style.text}>{deck.questions[questionIndex].question}</Text>}
+                {showAnswer && <Text style={style.text}>{deck.questions[questionIndex].awers}</Text>}
                 {!showAnswer &&<TouchableOpacity style={style.btnAwers} onPress={handleShowAnswers}>
                     <Text style={{ color: colors.orage }}>ANSWERS</Text>
                 </TouchableOpacity>}
@@ -117,7 +117,7 @@ const GameOver = ({ score,handleGoBack, handleResetQuiz }) => {
     return (
         <View style={style.container}>
             <View style={[style.box]}>
-                <Text style={{ fontSize: 30, justifyContent: 'flex-start' }}>GAME OVER</Text>
+                <Text style={style.GameOver}>GAME OVER</Text>
                 <Text style={{ fontSize: 25 }}>You got {`${score}% correct answers.`}</Text>
             </View>
             <View style={[style.row]}>
@@ -150,6 +150,11 @@ const style = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         flex: 1,
+    },
+    score:{
+        fontSize: 20, 
+        padding: 10, 
+        fontWeight: "bold"
     },
     row: {
         flexDirection: 'row',
@@ -202,6 +207,13 @@ const style = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    text:{
+        fontSize: 25,
+        textAlign: 'center'
+    },textGameOver:{
+        fontSize: 30, 
+        justifyContent: 'flex-start'
     }
 })
 export default Quiz
